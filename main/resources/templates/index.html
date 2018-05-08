@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <h1>
+            <span th:style="'color:' + ${age >= 18 ? 'green' : 'red'}">
+                Witaj, <span th:text="${age >= 18 ? 'Wchodzisz' : 'Wychodzisz'}"></span>
+            </span>
+        </h1>
+    </div>
+
+</body>
+</html>
