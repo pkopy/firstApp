@@ -1,10 +1,20 @@
 package pl.pkopy.firstApp.models;
 
-public class LoginForm {
-    private String login;
-    private  String password;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-    public LoginForm(){
+public class LoginForm {
+    @NotEmpty
+    @Size(max = 20)
+    private String login;
+
+    @NotEmpty
+    @Size(max = 30)
+    @Pattern(regexp = ".*")
+    private String password;
+
+    public LoginForm() {
 
     }
 
