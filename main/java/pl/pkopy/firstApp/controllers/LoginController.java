@@ -26,6 +26,10 @@ public class LoginController {
     public String postLogin(@ModelAttribute @Valid LoginForm loginForm,
                             BindingResult bindingResult,
                             Model model) {
+
+        if(bindingResult.hasErrors()){
+            return "login";
+        }
         Boolean isLoginCorrect = loginForm.getLogin().equals("admin") && loginForm.getPassword().equals("admin");
 
 

@@ -2,34 +2,32 @@ package pl.pkopy.firstApp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import pl.pkopy.firstApp.models.RegisterForm;
+
+import javax.validation.Valid;
 
 @Controller
 public class FormController {
 
     @GetMapping("/register")
 
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("registerForm", new RegisterForm());
         return "register";
     }
 
     @PostMapping("/register")
 
-    public String postRegister(@RequestParam("login") String login,
-                               @RequestParam("password") String password,
+    public String postRegister(@ModelAttribute @Valid RegisterForm registerForm,
+                               BindingResult bindingResult,
                                Model model){
-        String message;
-
-        if(login.isEmpty() || password.isEmpty()){
-            message = "Rejestracja niepomyślna";
-        }else{
-            message = "Rejestracja pomyślna";
+        if(bindingResult.hasErrors()){
+            return "register";
         }
 
-        model.addAttribute("info", message);
+       model.addAttribute("info", "Ojojoj");
 
         return "register";
 
